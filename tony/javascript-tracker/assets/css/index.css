@@ -1,0 +1,80 @@
+.container {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.heading {
+  text-align: center;
+}
+
+.formInput {
+  width: 100%;
+}
+
+.formInput_label {
+  width: 100%;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.formInput_input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  height: 32px;
+  line-height: 32px;;
+}
+
+.formInput_input input {
+  border: 0;
+  outline: 0;
+  padding: 0 8px;
+  width: 97%;
+}
+
+.button_container {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.button {
+  background-color: blue;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.card {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.card_header {
+  background-color: #ccc;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+}
+
+.card_content {
+  padding: 10px;
+}
+
+.card_severity {
+  background-color: rgb(112, 49, 230);
+  display: inline-block;
+  color: #fff;
+  padding: 2px;
+  font-size: 14px;
+  border-radius: 3px;
+}
+
+.card_button {
+  text-align: right;
+}
+
+.button-delete {
+  background-color: red;
+}

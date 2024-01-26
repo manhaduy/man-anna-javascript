@@ -43,6 +43,7 @@ const addIssue = () => {
         <button type="button" class="button button-delete">Delete</button>
       </div>
     </div>`;
+    
 /*
     const task = `<div class="task">
     <input type="checkbox" class="task-check">
@@ -60,7 +61,7 @@ const addIssue = () => {
     const deleteButtons = document.querySelectorAll(".button-delete");
     deleteButtons.forEach((button) =>{
         button.onclick = () => {
-            button.parentNode.remove();
+            button.parentNode.parentNode.parentNode.remove();
             issueCount -= 1;
             displayCount(issueCount);
         };

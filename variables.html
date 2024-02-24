@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Variablesr</title>
+  
+</head>
+<body>
+  <h1>
+    Variables
+  </h1>
+
+
+  <script type="text/javascript">
+    var todo;
+    /* 
+      - All variable are global or local variable
+    */
+    var firstName = 'tony'; // global variable
+
+    /* var
+      - The var statement declares a function-scoped or globally-scoped variable, optionally initializing it to a value.
+      - Hoisting.
+        - allow to use before declaration
+        - allocate on the top file
+      - Allow assignment.
+    */
+
+    function printName() {
+      var lastName;
+      var lastName = 'truong'; // local variable 
+    }
+
+    console.log('before todo: ', todo);
+    var todo = 'learn javascript'; // assignment
+    console.log('after todo: ', todo);
+
+    /*
+    The let statement declares a block-scoped, local variable, optionally initializing it to a value.
+    - Allows you to declare variables that are limited to the scope of a block statement, or expression on which it is used.
+    - The let does not create properties of the window object when declared globally (in the top-most scope). 
+    - Not hoisting.
+    - Allow assignment.
+    */
+
+    let cars = 'cars'; // assignment
+    cars = 'tony cars'
+    console.log('after todo: ', cars);
+
+    /* const = CONSTANT (uppercase)
+      - The const statement declares a block-scoped local variable.
+      - Not hoisting.
+      - Not assignment.
+    */
+   const THEME = 'light';
+
+
+
+
+  </script>
+</body>
+</html>
+
+

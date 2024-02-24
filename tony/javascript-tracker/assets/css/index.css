@@ -78,3 +78,9 @@
 .button-delete {
   background-color: red;
 }
+
+.headling {
+  text-decoration: none;
+  font-weight: normal;
+  color: #f00;
+}

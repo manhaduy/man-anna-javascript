@@ -6,7 +6,7 @@ buttonAdd.addEventListener('click', function handleAdd() {
   console.log(descriptionInput.value)
 });
 */
-const dataIssues = [];
+let dataIssues = [];
 const error = document.getElementById("error");
 const buttonAdd = document.querySelector("#buttonAdd");
 const descriptionInput = document.querySelector("#description");
@@ -77,6 +77,13 @@ const renderIsssue = (dataSource = []) => {
 renderIsssue(dataIssues);
 
 function deleteIssue(issueId) {
+    const clonedIssues = [...dataIssues];
+    const newIssues = clonedIssues.filter(issue => issue.id !== issueId);
+
+    // update dataIssues   
+    dataIssues = newIssues;
+    renderIsssue(newIssues);
+
     console.log('deleteIssue', issueId);
     // xu ly issue data
 }

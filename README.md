@@ -49,6 +49,9 @@ $ git commit -m "xxxxx"
 
 # 6. push code on current branch
 $ git push
+
+## if the branch is first in local, then:
+$  git push --set-upstream origin feature/overview-git
 ```
 
 project 2-4 branch:  main/master, develop, qc, uat

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Data Type</title>
+  
+</head>
+<body>
+  <h1>
+    Data Type
+  </h1>
+
+  <script type="text/javascript">
+    /*
+      - Primitive Values.
+        Boolean: true/false
+        Number: 1, 2, 10, 4, ….
+        String: ‘abc’, …
+        Null
+        Undefined
+        Symbol (ES2015)
+      - Objects.
+        - Array
+        - Function
+        - Object
+        - Date
+        - RegExp 
+
+      Note: You can’t define your own primitive types.
+    */
+    let isLoading = false; // boolean: true/false
+    let age = 10; // number
+    let name = 'tony'; // string
+    let person = null; // null
+    let job; // undefined
+    let symbol = Symbol('symbol'); // symbol
+    let todo = {
+      name: 'learn javascript', // property
+      isDone: false
+    }; // object
+    let numbs = [1, 2, 3, 4, 5]; // array
+    function printName() {
+      console.log('tony');
+    }; // function
+    let date = new Date(); // date
+
+    /* immutable: 
+      - should not change value of initial variable 
+      - should cloned new variable from initial variable
+    */
+    let firstName = 'tony';
+
+    function xxx() {
+      show(firstName)
+    }
+
+    function getFullName() {
+      let _firstName = firstName; // cloned value
+      _firstName = "tony" + "nguyen";
+      return _firstName;
+    }
+    const fullName = getFullName(); // execute function
+    
+    console.log('immutable: ', {
+      firstName,
+      fullName
+    })
+
+
+    /* Data type: number
+      Besides regular numbers, there are so-called “special numeric 
+      values” which also belong to this data type: Infinity, -Infinity and NaN.
+     */
+
+     console.log('Infinity: ', 1000000 > Infinity)
+     console.log('NaN: ',  10000 / "tweww"); // NaN = Not a Number
+
+     /* Data type: string
+      A string in JavaScript must be surrounded by quotes.
+        Double quotes: "Hello".
+        Single quotes: 'Hello'.
+        Backticks: `Hello`.
+    */
+   const contentHTML = "Hello, ";
+   const ageHtml = 10 + 5;
+   const concatString = contentHTML + "tony" + ageHtml; // es5
+   const conncatStringEs6 = `${contentHTML} tony, age ${10 + 5}`; // es6: template string, backticks
+   console.log('string: ', concatString)
+
+   /* Data type: null
+    When you don't know the value or data type of a variable, you can set it to null.
+   */
+    let user = null;
+    // // call api from BE -> BE response data is object
+    user = {
+      name: 'tony'
+    };
+    console.log('Data type: null: ', user);
+
+
+    /* Data type: undefined
+        - A variable that has not been assigned a value is undefined.
+        - A method or statement also returns undefined if the variable that is being evaluated does not have an assigned value.
+      The global undefined property represents the primitive value undefined. It is one of JavaScript's primitive types.
+        - Uninitialized variables
+        - Missing parameters
+        - Missing properties have that nonvalue
+        - Functions implicitly return it if nothing has been explicitly returned.
+
+
+    
+      */
+    console.log('before testUndefined: ', testUndefined)
+    var testUndefined = 'test';
+    console.log('after testUndefined: ', testUndefined)
+    function testFunctionMissingParameter(firstName) {
+      return firstName;
+    }
+
+    console.log('testFunctionMissingParameter: ', testFunctionMissingParameter())
+    
+
+    /* Data type: Object
+      Notes: compare by reference ( so sánh tham chiếu ) (so sánh vùng nhớ máy tính)
+    */
+    const num1 = 10; // memory 1
+    const num2 = 10; // memory 2
+    console.log("num1 === num2: ", num1 === num2) // true - compare by value
+
+    const objA = {}; // memory A
+    const objB = {}; // memory B
+    console.log("objA === objB: ", objA === objB) // false - compare by reference
+
+    const objC = objA; // memory C - reference to memory A
+    console.log("objA === objC: ", objA === objC) // true - compare by reference
+
+    /* typeof
+      - The typeof operator returns a string indicating the type of the unevaluated operand.
+    */
+    console.log('typeof: ', {
+      isLoading: typeof isLoading,
+      age: typeof age,
+      name: typeof name,
+      person: typeof person,
+      job: typeof job,
+      symbol: typeof symbol,
+    })
+
+    function showNumber(value) {
+      // way 1
+      if(typeof value === 'number') {
+        // code logic A
+        console.log("showNumber: ", value)
+        return; // return early (clean code)
+      }
+
+      if(typeof value === 'string') {
+        // code logic B
+        console.log("showNumber: ", value)
+        return; // return early (clean code)
+      } 
+      
+      // code logic C
+      console.log('showNumber: ', 'not a number')
+    }
+    showNumber('dsadsad');
+
+    // baitap: return early
+    // show montly by number: 1 - January, 2 - February, 3 - March, 4 - April, 5 - May, 6 - June, 7 - July, 8 - August, 9 - September, 10 - October, 11 - November, 12 - December
+    // anna: write way 1
+    // man: write way 2
+    function showMontly(number) {
+
+    }
+
+  </script>
+</body>
+</html>
+
+

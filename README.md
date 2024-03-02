@@ -32,6 +32,9 @@ $ git push
 ## step to step to implement an new feature
 
 ```bash
+# IMPORTANT: get latest code before implement
+$ git pull
+
 # 1. check current branch
 $ git branch --show-current
 

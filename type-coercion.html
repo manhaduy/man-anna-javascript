@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Type Coercion</title>
+  
+</head>
+<body>
+  <h1>
+    Type Coercion
+  </h1>
+
+  <script type="text/javascript">
+    /*
+      - String conversions
+          - String('value')
+          - value.toString()
+      - Numeric conversions
+      - Boolean conversions
+          - undefined, null -> false
+          - Boolean: false -> false
+          - Number: 0, NaN = not a number -> false
+          - String: ' ' empty -> false
+          - all objects are truthy -> true
+    */
+
+    // string conversion
+    const stringValue = true;
+    console.log('string conversion:', {
+      way1: String(stringValue), 
+      way2: stringValue.toString()
+    }); 
+
+    // numeric conversion
+    console.log('number conversion: ', {
+      'value undefined': Number(undefined),
+      'value null': Number(null),
+      'value true': Number(true),
+      'value false': Number(false),
+      'value floating': Number("10.5"),
+      'value toFixed': Number(10.6576.toFixed(2)),
+    })
+
+    // boolean conversion
+    console.log('boolean conversion: ', {
+      'value object': Boolean({}),
+    })
+  </script>
+</body>
+</html>
+
+

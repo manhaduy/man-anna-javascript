@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Scope</title>
+  
+</head>
+<body>
+  <h1>
+    Scope
+  </h1>
+
+  <script type="text/javascript">
+    /*
+    In other terms, “scope determines the accessibility” of variables.
+    Types scope:
+      Local/Function scope.
+      Global scope.
+      Block scope.
+    */
+
+
+    /* global scope / global variable
+      - var, let, const
+    */
+
+    // global scope -> declared in the file
+    var x = 10; // attach to the window object
+    let y = 20;
+    const z = 30;
+
+    function globalFunction(){
+      // global variable of the function
+      // local variable of the function
+      var firstName = 'tony';
+      let lastName = 'nguyen';
+      const fullName = 'nhat';
+    };
+
+    /* block scope
+      - let, const
+      - if, for, while, switch, try/catch { ... }
+    */
+    
+    if(true) {
+      let y = 10;
+      const z = 40;
+      console.log('block scope - inside if: ', y)
+      console.log('block scope - inside if: ', z)
+    }
+
+    console.log('block scope - outside if:: ', y);
+    console.log('block scope - inside if: ', z)
+    
+
+  </script>
+</body>
+</html>
+
+

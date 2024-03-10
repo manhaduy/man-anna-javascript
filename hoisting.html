@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>hoisting</title>
+  
+</head>
+<body>
+  <h1>
+    hoisting
+  </h1>
+
+  <script type="text/javascript">
+    /*
+      In JavaScript, a variable can be declared after it has been used.
+      - can access before declaration
+      - move all variables (var) or function to the top of the current scope (to the top of the current script or the current function)
+    */
+
+   // Hoisting 1 with IIFE
+    var salary = '1000$';
+
+    (function () {
+      console.log('Original salary was ' + salary);
+      var salary = '6000$';
+      console.log('My New Salary ' + salary);
+    })();
+
+    // Hoisting 2 and Scope Chain with IIFE
+    var salary = '1000$';
+
+    (function () {
+      console.log('Original salary was ' + salary);
+      console.log('My New Salary ' + salary);
+    })();
+
+    // Hoisting 3
+    var x = 10;
+
+    test();
+
+    function test() {
+      function logX() {
+        console.log(x);
+      }
+      var x = 20;
+      logX();
+    }
+
+    console.log(x);
+
+  </script>
+</body>
+</html>
+
+

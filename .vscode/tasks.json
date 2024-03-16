@@ -1,0 +1,11 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "Live Preview",
+			"workspacePath": "/home/manhaduy/Documents/Javascript lesson/man-anna-javascript",
+			"problemMatcher": [],
+			"label": "Live Preview: Run Server"
+		}
+	]
+}

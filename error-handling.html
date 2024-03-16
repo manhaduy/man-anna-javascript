@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>error-handling</title>
+  
+</head>
+<body>
+  <h1>
+    error-handling
+
+    <button type="button" onclick="throwError()">Submit</button>
+
+    <p id="error"></p>
+  </h1>
+
+  <script type="text/javascript">
+    let loading = false;
+   
+    function throwError() {
+      loading = true;
+      try {
+        // let firstName = 'John';
+        let lastName = 'Doe';
+        console.log('fullName: ', firstName + ' ' + lastName);
+      } catch (error) {
+        console.log('error: ', error);
+        document.getElementById('error').innerHTML = error;
+      } finally {
+        console.log('finally: ', 'I will be executed regardless of the result');
+        loading = false;
+      }
+    }
+    
+  </script>
+</body>
+</html>
+
+

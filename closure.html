@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>closure</title>
+  
+</head>
+<body>
+  <h1>
+    closure
+  </h1>
+
+  <script type="text/javascript">
+    // public function
+    function getNumber() {
+      let a = 10;
+      a = a + 10;
+      return a;
+    }
+
+    function checkNumber() {
+      const number = getNumber(); // 20
+      return number;
+    }
+    checkNumber(); // 10 + 10 = 20
+    checkNumber(); // 10 + 10 = 20
+    checkNumber(); // 10 + 10 = 20
+    console.log('public function: ', checkNumber()); // 20
+
+    /*  private function (closure)
+      - The inner function has access to the outer function's variables.
+      - we want to keep the value of the variable after the outer function has finished executing.
+    */
+   function outerFunction() {
+    let total = 0; // 3
+    function increment() {
+      total = total + 1;
+      return total;
+    }
+    return increment;
+   } 
+   const innerFunction = outerFunction();
+   console.log('innerFunction: ', innerFunction)
+   innerFunction()(); // 0 + 1 = 1
+   innerFunction(); // 1 + 1 = 2
+   innerFunction(); // 2 + 1 = 3
+   innerFunction(); // 3 + 1 = 4
+   console.log('innerFunction: ', innerFunction())
+
+  /*
+    Exercises: Level 1
+    Create a closure which has one inner function (mỗi khi excute inner function thì total tăng lên 1 đơn vị)
+
+    Exercises: Level 2
+    Create a closure which has three inner functions (mỗi khi excute inner function thì total tăng lên 1 đơn vị)
+  */
+  
+    
+  </script>
+</body>
+</html>
+
+

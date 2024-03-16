@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>function</title>
+  
+</head>
+<body>
+  <h1>
+    function
+  </h1>
+
+  <script type="text/javascript">
+    /* function declarations
+      - The name of the function.
+      - The function declarations are hoisted onto the beginning of the scope.
+    */
+
+    // hoisting
+    console.log('function declarations hoisting: ', calRect());
+    function calRect() {
+      return 2 * 3;
+    }
+
+    /* function expression
+      - the function is anonymous.
+      - not hoisting
+    */
+
+    const calRect2 = function() {
+      return 2 * 3;
+    }
+    console.log('function expression: ', calRect2());
+
+
+    // parameters
+    // default value for parameters: firstName = 'John', lastName = 'Doe'
+    const object = {
+      firstName: 'John',
+      lastName: 'Doe',
+    }
+    function getUser({ firstName, lastName = 'nguyen', age, gender }) {
+      return firstName + ' ' + lastName;
+    }
+    console.log('default value: ', getUser({
+      gender: 'female',
+      firstName: 'tony',
+      lastName: 'stark',
+    }))
+
+  </script>
+</body>
+</html>
+
+

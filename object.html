@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>object</title>
+  
+</head>
+<body>
+  <h1>
+    object
+  </h1>
+
+  <script type="text/javascript">
+    // shorthand: when name & value of property are the same
+    function addTodo(title, description) {
+      return {
+        title,
+        description,
+        isCompleted: false
+      }
+    }
+    const newTodo = addTodo('learn JS', 'learn JS object');
+    console.log('shorthand: ', newTodo)
+
+    // define object
+    // key/name = value
+    const persons = {
+      firstName: 'John', // string
+      lastName: 'Doe', // string
+      age: 30, // number
+      isStudent: false, // boolean
+      address: { //  nested object
+        street: '50 main st',
+        city: 'Boston',
+        state: 'MA',
+        zip: '02101'
+      },
+      skills: ['HTML', 'CSS', 'JS'], // array
+      "like birds": true, // multi-word property name
+      // method
+      print: function(middleName = 'nguyen') {
+        return this.firstName + ' ' + this.lastName + ' ' + middleName;
+      }
+    }
+    const printFullName = persons.print('tran');
+    console.log('printFullName: ', printFullName)
+
+    // add properties to object
+    persons.author = {
+      firstName: 'Tony',
+      lastName: 'Stark'
+    }
+    persons['learn subject'] = 'javascript';
+
+    /* access properties
+    - dot notation: objectName.propertyName
+    - bracket notation: objectName['propertyName']
+    - destructuring: const { propertyName } = objectName
+    */
+
+    console.log('dot notation: ', persons.address)
+    console.log('bracket notation: ', persons['learn subject'])
+
+    // destructuring: extract properties from object
+    const { firstName, lastName } = persons;
+    console.log('destructuring: ', firstName, lastName)
+
+    /* for ... in object
+      - loop through the properties of an object
+      - get keys/names of object
+    */
+   for(let key in persons) {
+    console.log('for ... in object get key: ', key);
+    // key = firstName -> persons[key] -> persons['firstName'] -> 'John'
+    // key = 'like birds' -> persons[key] -> persons['like birds'] -> true
+    console.log('for ... in object get value: ', persons[key]);
+   }
+
+   /* in operator
+   - check if a property is in an object
+   - return boolean
+   */
+   console.log('in operator: ', 'firstName' in persons)
+
+
+    console.log('persons: ', persons)
+
+  </script>
+</body>
+</html>
+
+

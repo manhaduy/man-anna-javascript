@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Data Type</title>
+  
+</head>
+<body>
+  <h1>
+    Data Type Homework
+  </h1>
+
+  <script type="text/javascript">
+    // baitap: return early
+    // show montly by number: 1 - January, 2 - February, 3 - March, 4 - April, 5 - May, 6 - June, 7 - July, 8 - August, 9 - September, 10 - October, 11 - November, 12 - December
+    // anna: write way 1
+    // man: write way 2
+    
+    var month= ["January","February","March","April","May","June","July",
+            "August","September","October","November","December"];
+    let  input = prompt("Enter a number to display a month: ");
+    number = Number(input);   
+
+    function showMontly(number) {
+      if (typeof number === 'number') {
+        console.log(number + ' - ' + month[number-1])
+      }
+
+      console.log('Invalid Input, not a number!')
+    }
+s
+    showMontly(number);
+  </script>
+</body>
+</html>
+

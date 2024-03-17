@@ -10,6 +10,12 @@
     object
   </h1>
 
+  <h2>
+    Ordered object
+  </h2>
+  <div id="orderedObject"></div>
+  <div id="metricGroup"></div>
+
   <script type="text/javascript">
     // shorthand: when name & value of property are the same
     function addTodo(title, description) {
@@ -82,8 +88,149 @@
    */
    console.log('in operator: ', 'firstName' in persons)
 
+   /* ordered object
 
-    console.log('persons: ', persons)
+   */
+  const code = {
+    "+49": "Germany",
+    "+41": "Switzerland",
+    "+44": "Great Britain",
+    "+1": "USA",
+    "+2": "VN",
+    "+95": "JP",
+    "+10": "AU",
+    "+9": "CA"
+  }
+
+  for(let key in code) {
+    console.log('ordered object: ', key, code[key]);
+    // get element of node DOM
+    document.getElementById('orderedObject').innerHTML += `<p>${key}: ${code[key]}</p>`
+  }
+
+  // show metric
+  const metricGroups = {
+    "+User count": {
+      value: "User count",
+      label: "User count",
+      order: 1,
+    },
+    "+Retention": {
+      value: "Retention",
+      label: "Retention",
+      order: 2,
+    },
+    "+Time engagement": {
+      value: "Time engagement",
+      label: "Time engagement",
+      order: 3,
+    },
+    "+Activation Metrics": {
+      value: "Activation Metrics",
+      label: "Activation Metrics",
+      order: 4,
+    },
+    "+UV ULRD": {
+      value: "UV ULRD",
+      label: "UV ULRD",
+      order: 5,
+    },
+  };
+
+  /* 
+   - convert object to array
+    - sort array
+  */
+  // const metricArrays = Object.keys(metricGroups).map(key => metricGroups[key]);
+  // metricArrays.forEach(metric => {
+  //   document.getElementById('metricGroup').innerHTML += `<p>${metric.value}: ${metric.label}</p>`
+  // })
+
+ for(let key in metricGroups) {
+    // get element of node DOM
+    document.getElementById('metricGroup').innerHTML += `<p>${key}: ${metricGroups[key].label}</p>`
+  }
+  console.log('persons: ', persons)
+
+  /* clone/copy object
+    Notes: properties of object will be overridden if they have the same name
+      - Use the spread (...) syntax -> shallow copy
+      - Use the Object.assign() method -> shallow copy
+      - Use the JSON.stringify() and JSON.parse() methods -> deep copy
+
+    shallow clone/copy: copy properties of object, share same reference of nested object
+    deep clone/copy: copy properties of object, copy reference of nested object
+  */
+ const personA = {
+  firstName: 'John', // primitive type -> compare value
+  lastName: 'Doe',
+ }
+ const personB = {
+  age: 18,
+  address: {
+    street: '50 main st',
+    city: 'Boston',
+  }, // nested object -> non-primive type -> compare reference
+  firstName: 'anna'
+ }
+ // spread syntax
+ const clonePerson = { ...personB, ...personA };
+ console.log('cloned object with spread syntax: ', clonePerson)
+
+ // object.assign()
+ const clonePerson2 = Object.assign({}, personA, personB);
+ console.log('cloned object with object.assign: ', clonePerson2)
+
+ // JSON.stringify() and JSON.parse()
+ const clonePerson3 = JSON.parse(JSON.stringify(personA));
+ console.log('cloned object with  JSON.stringify() and JSON.parse(): ', clonePerson3)
+
+ // shallow clone/copy
+ const originalCar = {
+  model: 'BMW',
+  year: 2020,
+  color: 'black',
+  owner: {
+    name: 'John',
+    age: 30
+  }
+ }
+
+ // shallow copy
+ const clonedCar  = { ...originalCar }; 
+ clonedCar.model = 'Toyota'; // update property of object
+ clonedCar.owner.name = 'Man'; // update nested object
+ console.log("shallow copy", {
+  originalCar,
+  clonedCar
+ });
+
+ // deep copy
+ const deepCloneCar = JSON.parse(JSON.stringify(originalCar));
+ deepCloneCar.owner.age = 18; // update nested object
+ console.log('deep copy', {
+  deepCloneCar,
+  originalCar
+ })
+
+ // delete object property
+ delete deepCloneCar.color;
+ console.log('delete object property', deepCloneCar);
+
+ /* convert object to array
+  - Object.keys(objectName) -> array of keys
+  - Object.values(objectName) -> array of values
+  - Object.entries(objectName) -> array of key-value pairs
+ */
+const todo = {
+  title: 'learn JS',
+  description: 'learn JS object',
+  isCompleted: false
+}
+console.log('object key: ', Object.keys(todo))
+console.log('object value: ', Object.values(todo))
+console.log('object key-value: ', Object.entries(todo))
+    
 
   </script>
 </body>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>compare-object</title>
+  
+</head>
+<body>
+  <h1>
+    compare-object
+  </h1>
+
+  <script type="text/javascript">
+    /*
+      - Referential equality (so sánh tham chiếu)
+      - Manual Comparison
+      - Shallow equality (so sánh nông)
+      - Deep equality (so sánh sâu)
+    */
+    const hero1 = {
+      name: 'Thor',
+      weapon: 'Armor',
+      year: 2000,
+      address: {
+        street: '50 main st',
+        zip: '02101'
+      }, // object
+    }
+    const hero2 = {
+      name: 'Thor',
+      weapon: 'Armor',
+      year: 2000,
+      address: {
+        street: '50 main st',
+        zip: '100'
+      } // // object
+    }
+
+    // manual comparison
+    function isManualComparison(objectA, objectB) {
+      return objectA.name === objectB.name && objectA.weapon === objectB.weapon;
+    }
+    console.log('reference equality: ', hero1 === hero2);
+    console.log('manual comparison: ', isManualComparison(hero1, hero2));
+
+    // shallow equality
+    function isShallowEquality(objectA, objectB) {
+      const keysA = Object.keys(objectA);
+      const keysB = Object.keys(objectB);
+
+      if(keysA.length !== keysB.length) {
+        return false;
+      }
+      for(let key of keysA) {
+        /* loop0 -> name
+          objectA[key] -> objectA['name'] -> Thor
+          objectB[key] -> objectB['name'] -> Thor
+        */
+
+       /* loop1 -> weapon
+          objectA[key] -> objectA['weapon'] -> Mjolnir
+          objectB[key] -> objectB['weapon'] -> Armor
+        */
+       if(objectA[key] !== objectB[key]) {
+        return false;
+       }
+      }
+      return true;
+    }
+    console.log('shallow equality: ', isShallowEquality(hero1, hero2));
+
+    // deep equality
+    function isObject(value) {
+      return value != null && typeof value === 'object';
+    }
+
+    function isDeepEquality(objectA, objectB) {
+      const keysA = Object.keys(objectA);
+      const keysB = Object.keys(objectB);
+
+      if(keysA.length !== keysB.length) {
+        return false;
+      }
+      console.log('keysA: ', keysA)
+
+      for(let key of keysA) {
+        const areObjects = isObject(objectA[key]) && isObject(objectB[key]);
+        console.log('loop: ',key, objectA[key], objectB[key])
+
+        /* 
+        key = name;
+        key = address;
+               street
+
+        - areObjects && !isDeepEquality(objectA[key], objectB[key]) || !areObjects && objectA[key] !== objectB[key]
+          false  && ?                                               || true        &&  false
+          true   && !isDeepEquality(objectA['address'], objectB['address'])
+  street  false && true || true && false -> false
+  zip     false && true || true  && true -> true
+
+        */ 
+        if(areObjects && !isDeepEquality(objectA[key], objectB[key]) || !areObjects && objectA[key] !== objectB[key]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+    console.log('deep equality: ', isDeepEquality(hero1, hero2));
+
+  </script>
+</body>
+</html>
+
+

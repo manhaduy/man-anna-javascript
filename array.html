@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>array</title>
+  
+</head>
+<body>
+  <h1>
+    loop array
+  </h1>
+  <div id="idPerson"></div>
+
+  <script type="text/javascript">
+    // create array
+    const numbs = [];
+    const persons = [];
+
+    for(let i = 0; i < 10; i++) {
+      // install element in array
+      numbs.push(i + 1);
+      const person = {
+        id: Date.now(), // timestamp
+        title: i + 1
+      }
+      persons.push(person)
+    }
+    console.log('numbs: ', numbs)
+    console.log('persons: ', persons)
+
+    // access item in array
+    console.log('access first element: ', persons[0]);
+    console.log('access last element: ', persons[persons.length - 1]);
+
+    // loop array
+    const divPerson = document.getElementById('idPerson');
+    for(let i = 0; i < persons.length; i++) {
+      const title = persons[i].title;
+      const divData = document.createElement('div')
+      divData.innerText = `Title ${title}`; // template string
+      divPerson.appendChild(divData)
+    }
+
+   
+
+  </script>
+</body>
+</html>
+
+

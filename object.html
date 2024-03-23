@@ -229,7 +229,23 @@ const todo = {
 }
 console.log('object key: ', Object.keys(todo))
 console.log('object value: ', Object.values(todo))
-console.log('object key-value: ', Object.entries(todo))
+console.log('object key-value: ', Object.entries(todo));
+
+  /* in operator
+    Use: in operator
+    Check exist property.
+    Return boolean
+  */
+ const person = {
+  firstName: 'John',
+  lastName: 'Doe',
+ }
+ if("age" in person) {
+  console.log('exist property')
+ } else {
+  person.age = 30;
+ }
+  console.log('in operator person: ', person)
     
 
   </script>

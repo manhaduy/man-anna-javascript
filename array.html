@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-
   <title>array</title>
-  
+
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body style="padding: 0 20px">
   <h1>
     loop array
   </h1>
   <div id="idPerson"></div>
+
+  <h1 class="text-[40px] text-bold">Products</h1>
+  <br />
+
+  <div id="products_container">
+    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+        <p class="text-gray-700 text-base">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <br />
+  <br />
+  <br />
 
   <script type="text/javascript">
     // create array
@@ -32,7 +50,14 @@
     console.log('access first element: ', persons[0]);
     console.log('access last element: ', persons[persons.length - 1]);
 
-    // loop array
+    /*  loop array
+      - for ... loop
+      - for ... of
+      - for ... in
+      - forEach
+
+      => not return new array
+    */
     const divPerson = document.getElementById('idPerson');
     for(let i = 0; i < persons.length; i++) {
       const title = persons[i].title;
@@ -41,7 +66,115 @@
       divPerson.appendChild(divData)
     }
 
-   
+    const users = [
+      { id: 1, firstName: 'tony', lastName: 'nguyen' },
+      { id: 2, firstName: 'anna', lastName: 'us' },
+      { id: 3, firstName: 'man', lastName: 'can' }
+    ]
+    /* 
+      output = {
+        1: 'tony nguyen',
+        2: 'anna us',
+        3: 'man can'
+      }
+    */
+   let output = {};
+   users.forEach(function(user) {
+    output = {
+      ...output, // copy properties of object
+      [user.id]: `${user.firstName} ${user.lastName}`
+    }
+   })
+   console.log("forEach: ", output)
+
+   /*
+    - push() method adds one or more elements to the end of an array and 
+    returns the new length of the array.
+    - pop() method removes the last element from an array and 
+    returns that element. This method changes the length of the array.
+
+    Notes: don't return new array
+   */
+  const animals = [
+    { id: 1, category: 'chim', name: 'andy' },
+    { id: 2, category: 'ca', name: 'dolphin' },
+    { id: 3, category: 'meo', name: 'cat' },
+  ]
+  // const animalLengh = animals.push({
+  //   id: Math.random(), category: 'chim', name: 'tuktuk'
+  // })
+  animals.push({
+    id: Math.random(), category: 'chim', name: 'tuktuk'
+  })
+  const animalLength = animals.length;
+
+  console.log('push: ', animalLength, animals);
+
+  // pop
+  animals.pop();
+  animals.pop();
+  console.log('pop: ', animals);
+
+    /*
+      - shift() method removes the first element from an array and 
+      returns that removed element. This method changes the length of the array.
+      - unshift() method adds one or more elements to the beginning 
+      of an array and returns the new length of the array.
+
+      Notes: don't return new array
+   */
+   const birds = [
+      { id: 1, category: 'chim', name: 'andy' },
+      { id: 2, category: 'chim', name: 'tuk' },
+      { id: 3, category: 'chim', name: 'cat' },
+    ]
+    birds.unshift({
+      id: Math.random(), category: 'chim', name: 'tuktuk'
+    })
+    const birdsLength = birds.length;
+
+    console.log('unshift: ', birdsLength, birds);
+
+    // shift()
+    birds.shift();
+    birds.shift();
+    console.log('shift: ', birds);
+
+    // bai tap add, remove products
+    const productContainer = document.getElementById('products_container');
+    const products = [
+    { 
+        id: Math.floor(Math.random() * 100), 
+        name: 'laptop', 
+        description: 'make by apple' 
+      },
+      { 
+        id: Math.floor(Math.random() * 100), 
+        name: 'iphone15', 
+        description: 'iphone15 by apple' 
+      }
+    ]
+
+    products.forEach(product => {
+      const card = document.createElement('div');
+      card.setAttribute('class', 'max-w-sm rounded overflow-hidden shadow-lg');
+
+      const cardContent = document.createElement('div');
+      cardContent.setAttribute('class', 'px-6 py-4');
+
+      const cardTitle = document.createElement('div');
+      cardTitle.setAttribute('class', 'font-bold text-xl mb-2');
+      cardTitle.innerHTML = product.name;
+
+      const cardDescription = document.createElement('p');
+      cardDescription.setAttribute('class', 'text-gray-700 text-base');
+      cardDescription.innerHTML = product.description
+
+      cardContent.appendChild(cardTitle);
+      cardContent.appendChild(cardDescription);
+      card.appendChild(cardContent);
+      productContainer.appendChild(card);
+    })
 
   </script>
 </body>

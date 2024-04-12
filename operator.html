@@ -146,7 +146,24 @@
   // show montly by number: 1 - January, 2 - February, 3 - March, 4 - April, 5 - May, 6 - June, 7 - July, 8 - August, 
   // 9 - September, 10 - October, 11 - November, 12 - December
   function showMontly(number) {
+          return number === 1 ? "January" 
+                : number === 2 ? "February"
+                : number === 3 ? "March"
+                : number === 4 ? "April"
+                : number === 5 ? "May"
+                : number === 6 ? "June"
+                : number === 7 ? "July"
+                : number === 8 ? "August"
+                : number === 9 ? "September"
+                : number === 10 ? "October"
+                : number === 11 ? "November"
+                : number === 12 ? "December"
+                : "Not a month"
   }
+
+for (let i = 0 ; i < 13; i ++){
+  console.log(showMontly(i));
+}
 
   </script>
 </body>

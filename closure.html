@@ -31,6 +31,7 @@
       - The inner function has access to the outer function's variables.
       - we want to keep the value of the variable after the outer function has finished executing.
     */
+   
    function outerFunction() {
     let total = 0; // 3
     function increment() {
@@ -41,7 +42,7 @@
    } 
    const innerFunction = outerFunction();
    console.log('innerFunction: ', innerFunction)
-   innerFunction()(); // 0 + 1 = 1
+   innerFunction(); // 0 + 1 = 1
    innerFunction(); // 1 + 1 = 2
    innerFunction(); // 2 + 1 = 3
    innerFunction(); // 3 + 1 = 4
@@ -50,12 +51,58 @@
   /*
     Exercises: Level 1
     Create a closure which has one inner function (mỗi khi excute inner function thì total tăng lên 1 đơn vị)
+   */
+      function createCounter(name) {
+      let total = 0;
 
+      function increment() {
+        total++;
+        return total + ' ' + name;
+      }
+
+      return increment;
+    }
+
+    const counter = createCounter('Alice');
+    console.log('counter ' + counter()); 
+    console.log('counter ' + counter()); 
+    console.log('counter ' + counter()); 
+
+   /*
     Exercises: Level 2
     Create a closure which has three inner functions (mỗi khi excute inner function thì total tăng lên 1 đơn vị)
   */
-  
-    
+      function newCounter() {
+      let total = 0;
+
+      function increase() {
+        total++;
+        return total;
+      }
+
+      function decrease() {
+        total--;
+        return total;
+      }
+
+      function currentCount() {
+        return total;
+      }
+
+      return {
+        increase,
+        decrease,
+        currentCount
+      };
+    }
+
+    const myCounter = newCounter();
+    console.log('increase ' + myCounter.increase()); 
+    console.log('increase ' + myCounter.increase()); 
+    console.log('decrease ' + myCounter.decrease()); 
+    console.log('decrease ' + myCounter.decrease()); 
+    console.log('current count ' + myCounter.currentCount()); 
+
   </script>
 </body>
 </html>

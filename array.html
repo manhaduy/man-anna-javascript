@@ -343,16 +343,18 @@
         }
       */
 
+      const reduceIdentifies = identifies.reduce((acc, curr) => {
+        if(!acc[curr]) acc[curr] = 1;
+        else acc[curr] = acc[curr] + 1
+        return acc;
+      }, {})
+
+      console.log(output); // Output: { Truong: 3, Tony: 1, Hau: 2 }
+      console.log('reduceIdentifies: ', reduceIdentifies); // Output: { Truong: 3, Tony: 1, Hau: 2 }
+
       // bai tap 3:
       // group object by a property
-      const peoples = [
-        { name: 'Truong', age: 20 },
-        { name: 'Hau', age: 20 },
-        { name: 'Tony', age: 32 },
-        { name: 'Duy', age: 21 },
-        { name: 'Duy', age: 20 },
-      ];
-        /*
+              /*
         output group by age
         {
           20: [
@@ -367,6 +369,45 @@
           ]
         }
       */
+
+      const groupPeople = peoples.reduce((acc, curr) => {
+        const key = curr.age; 
+        if(!acc[key]) acc[key] = [];
+        acc[key].push(curr);
+
+        return acc;
+      }, {})
+      
+      console.log('groupPeople: ', groupPeople)
+
+      // bai  tap concat
+      const friends = [
+        {
+          name: 'Anna',
+          books: ['Bible', 'Harry Potter'],
+          age: 21,
+        },
+        {
+          name: 'Bob',
+          books: ['War and peace', 'Romeo and Juliet'],
+          age: 26,
+        },
+        {
+          name: 'Alice',
+          books: ['The Lord of the Rings', 'The Shining'],
+          age: 18,
+        },
+      ];
+
+      /* output = [
+        'Bible', 'Harry Potter', 'War and peace', 'Romeo and Juliet', 'The Lord of the Rings', 'The Shining'
+      ]
+      */
+      const bookReduce = friends.reduce((acc, curr) => {
+        const books = curr.books;
+        return acc.concat(books);
+      }, [])
+      console.log('bookReduce: ', bookReduce)
 
 
   </script>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>destructuring</title>
+  
+</head>
+<body>
+  <h1>
+    destructuring
+  </h1>
+
+  <script type="text/javascript">
+    /* destructring
+      The two most used data structures in JavaScript are Object and Array.
+        Objects allow us to create a single entity that stores data items by key.
+        Arrays allow us to gather data items into an ordered list.
+    */
+
+    const person = {
+      firstName: 'tony',
+      lastName: 'nguyen',
+      address: {
+        city: 'hcm',
+        district: '3',
+        author: {
+          firstName: 'man'
+        }
+      },
+      assertment: {
+        car: {
+          name: 'city',
+          brand: {
+            name: 'honda',
+            year: 2024
+          }
+        }
+      }
+    }
+    // in ra year của car, name của car, firstName cua author, firstName cua person
+    const {
+      firstName: firstNameTony,
+      address: {
+        author: {
+          firstName: firstNameMan
+        }
+      },
+      assertment: {
+        car: {
+          name,
+          brand: {
+            year
+          }
+        }
+      }
+    } = person;
+
+    // const firstName = person.firstName;
+    // const city = person.address.city;
+    // es6
+    const firstName = 'anna';
+
+    const { 
+      firstName: firstNameDes, // rename default
+      lastName, 
+      address: {
+        city,
+        author: {
+          firstName: firstNameAuthor
+        }
+      }
+    } = person;
+    // const { city } = person.address;
+
+    console.log('destructuring person: ', {
+      firstNameDes,
+      lastName,
+      city,
+      firstNameAuthor
+      // city
+    })
+
+    // default value
+    function getPerson({ firstName, lastName, city = 'hanoi' }) {
+      return `${firstName} - ${lastName} - ${city}`; // template literal
+    }
+
+    const fullInformation = getPerson({
+      lastName,
+      firstName: firstNameDes,
+    })
+    console.log('fullInformation person: ', fullInformation);
+
+    // ignore value (delete property in object);
+    // rest operator: get remains properties in object
+    const { firstName: ignoreFirstName, ...rest} = person;
+    console.log('rest operator: ', rest);
+
+    // spread operator: dàn trải properties in object
+    function fetchFullName(person) {
+      return `${person.firstName} - ${person.lastName} - ${person.address.city}`; // template literal
+    }
+    const fetchFullNameSpread = fetchFullName({ ...person }) // spread
+    console.log('spread operator: ', fetchFullNameSpread);
+  </script>
+</body>
+</html>
+
+

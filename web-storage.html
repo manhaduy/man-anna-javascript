@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Web storage</title>
+  
+</head>
+<body>
+  <h1>
+    Web storage
+  </h1>
+
+  <h3>User: <span id="fullName"></span></h3>
+
+  <div>
+    First Name: <input type="text" id="firstName" /> <br />
+    Last Name: <input type="text" id="lastName" /> <br />
+    <button type="button" id="btnSubmit">Submit</button>
+  </div>
+
+  <script type="text/javascript">
+    /* localstorage
+      - The localStorage object stores the data with no expiration date. 
+      - Storage maximum 5MB.
+      - Storaged from client side.
+      - Data is json string 
+      - The data will be deleted when the user clear  history of browser.
+      - Only save in its domain
+
+      Method
+      localStorage.setItem(‘key’, value) -> luu tru data vao trong storage
+      localStorage.getItem(‘key’) -> lay data tu` trong storage
+      localStorage.removeItem(‘key’) -> no se remove cai storage chi dinh.
+      localStorage.clear() -> clear all storage.
+    */
+
+    /* sessionStorage
+      - It stores the data for only ONE SESSION.
+      - The data is deleted when the user CLOSE the specific browser tab.
+      - Storaged from client side.
+      - Storage maximum 5MB.
+      - Data is json string 
+      - Only save in its domain
+    */
+    // const user = {
+    //   firstName: 'tony',
+    //   lastName: 'nguyen'
+    // }
+    // // save data in localstorage
+    // window.localStorage.setItem('user', JSON.stringify(user))
+
+    // // get data from localstorage
+    // const userStorage = window.localStorage.getItem('user');
+
+    // console.log('get data: ', JSON.parse(userStorage));
+
+    // remove localstorage item
+    // window.localStorage.removeItem('user')
+
+    // // save data in sessionStorage
+    // window.sessionStorage.setItem('user', JSON.stringify(user))
+
+    // // get data from localstorage
+    // const userSession = window.localStorage.getItem('user');
+
+    // console.log('get data sessionStorage: ', JSON.parse(userStorage));
+
+    const btnSubmit = document.getElementById('btnSubmit');
+
+    btnSubmit.addEventListener('click', function() {
+      const firstName = document.getElementById('firstName');
+      const lastName = document.getElementById('lastName');
+
+      console.log('firstName:: ', firstName)
+
+      if(firstName.value === '' || lastName.value === '') return;
+
+      const user = {
+        firstName: firstName.value,
+        lastName: lastName.value
+      }
+      window.sessionStorage.setItem('user', JSON.stringify(user))
+    })
+
+    function initialize() {
+      const user = JSON.parse(window.sessionStorage.getItem('user'));
+      const fullName = document.getElementById('fullName');
+
+      if(!user) {
+        fullName.innerHTML = 'please login';
+        return
+      };
+
+      fullName.innerHTML = user.lastName + ' ' + user.firstName
+    }
+
+    initialize();
+
+
+  </script>
+</body>
+</html>
+
+

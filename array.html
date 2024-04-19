@@ -343,16 +343,18 @@
         }
       */
 
+      const reduceIdentifies = identifies.reduce((acc, curr) => {
+        if(!acc[curr]) acc[curr] = 1;
+        else acc[curr] = acc[curr] + 1
+        return acc;
+      }, {})
+
+      console.log(output); // Output: { Truong: 3, Tony: 1, Hau: 2 }
+      console.log('reduceIdentifies: ', reduceIdentifies); // Output: { Truong: 3, Tony: 1, Hau: 2 }
+
       // bai tap 3:
       // group object by a property
-      const peoples = [
-        { name: 'Truong', age: 20 },
-        { name: 'Hau', age: 20 },
-        { name: 'Tony', age: 32 },
-        { name: 'Duy', age: 21 },
-        { name: 'Duy', age: 20 },
-      ];
-        /*
+              /*
         output group by age
         {
           20: [
@@ -367,7 +369,84 @@
           ]
         }
       */
+      const peoples = [
+        { name: 'Truong', age: 20 },
+        { name: 'Hau', age: 20 },
+        { name: 'Tony', age: 32 },
+        { name: 'Duy', age: 21 },
+        { name: 'Duy', age: 20 },
+      ];
+    
+      const groupPeople = peoples.reduce((acc, curr) => {
+        const key = curr.age; 
+        if(!acc[key]) acc[key] = [];
+        acc[key].push(curr);
 
+        return acc;
+      }, {})
+      
+      console.log('groupPeople: ', groupPeople)
+
+      // bai  tap concat
+      const friends = [
+        {
+          name: 'Anna',
+          books: ['Bible', 'Harry Potter'],
+          age: 21,
+        },
+        {
+          name: 'Bob',
+          books: ['War and peace', 'Romeo and Juliet'],
+          age: 26,
+        },
+        {
+          name: 'Alice',
+          books: ['The Lord of the Rings', 'The Shining'],
+          age: 18,
+        },
+      ];
+
+      /* output = [
+        'Bible', 'Harry Potter', 'War and peace', 'Romeo and Juliet', 'The Lord of the Rings', 'The Shining'
+      ]
+      */
+      const bookReduce = friends.reduce((acc, curr) => {
+        const books = curr.books;
+        return acc.concat(books);
+      }, [])
+      console.log('bookReduce: ', bookReduce)
+
+      /* find
+        The find() method returns the value of the first element in the provided array that satisfies,
+         the provided testing function. If no values satisfy the testing function, undefined is returned.
+      */
+     const numbers = [2,5,13,612,53,45]
+     // callfunction () => {} (syntax arrow function)
+     const numberTwo = numbers.find((ele) => ele % 2 !== 0)
+     console.log("find number: ", numberTwo)
+
+     const person = [
+      { id: 1, name: 'tony' },
+      { id: 1, name: 'man' },
+      { id: 1, name: 'washington' }
+     ]
+     const personname = person.find((ele) => ele.name.length > 5)
+     console.log("find person: ", personname)
+
+     /* includes
+        If you need to find if a value exists in an array, use Array.prototype.includes(). 
+        Again, it checks each element for equality with the value instead of using a testing function.
+        The includes() method determines whether an array includes a certain value among its entries, returning true or false as appropriate.
+          searchElement: The value to search for.
+          fromIndex Optional : The position in this array at which to begin searching for searchElement.
+          const array1 = [2,34,242,4]
+          const output = array1.includes(2)
+      */
+     const searchValue = 'tony';
+     const sortPerson = person.filter(ele => ele.name.toLowerCase().includes(searchValue.toLowerCase()))
+     console.log("includes person: ", sortPerson)
+
+     
 
   </script>
 </body>

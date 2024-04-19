@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>JSON</title>
+  
+</head>
+<body>
+  <h1>
+    JSON
+  </h1>
+
+  <script type="text/javascript">
+    /* form
+    - first name
+    - last name
+    - email
+    */
+
+    // FE
+    const bodyData = {
+      firstName: 'tony',
+      lastName: 'nguyen',
+      email: 'tony@gmail.com'
+    }
+
+    /* stringify method
+    - When sending data to a web server, the data has to be a string.
+    - Convert a JavaScript value into a string with JSON.stringify().
+    */
+    // BE api require json stringify object
+    // convert object javascript to stringify with JSON method
+    const jsonBodydata = JSON.stringify(bodyData);
+    console.log('bodyData stringify: ', typeof jsonBodydata, jsonBodydata)
+
+    /* parse method
+      - When receiving data from a web server, the data is always a string.
+      - Parse the data with JSON.parse(), and the data becomes a JavaScript object.
+    */
+
+    const dataFromBE = JSON.stringify(bodyData);
+    const dataPared = JSON.parse(dataFromBE);
+    console.log('bodyData parse: ', typeof dataPared, dataPared.firstName)
+  </script>
+</body>
+</html>
+
+

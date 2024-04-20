@@ -102,6 +102,27 @@
     }
     const fetchFullNameSpread = fetchFullName({ ...person }) // spread
     console.log('spread operator: ', fetchFullNameSpread);
+
+    /* destructuring array
+      - can't rename
+      - by order list
+    */
+    const numbs = [1, 23, 45, 3, 5];
+    // rest operator in array
+    const [firstNum, lastNum, ...restArray] = numbs;
+    console.log('array destructuring: ', restArray);
+
+    // ignore destructuring in array
+    const [_, __, thirdNumber] = numbs;
+    console.log('array ignore destructuring: ', restArray);
+
+    // swap item
+    let source = 1;
+    let destination = 3;
+    [source, destination] = [destination, source];
+
+    console.log('swap item: ', source, destination)
+
   </script>
 </body>
 </html>

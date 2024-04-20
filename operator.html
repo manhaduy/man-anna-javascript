@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>operator</title>
+  
+</head>
+<body>
+  <h1>
+    operator:
+    <br />
+
+    Total: empty cart $
+  </h1>
+
+  <script type="text/javascript">
+    /* Operator
+     - ==: equal value  
+     - ===: equal value and equal type
+    */
+   let number = 1;
+
+   function onIncrement() {
+    // number++;
+    number = number + 1;
+    console.log('number: ', number)
+   }
+   onIncrement()
+
+
+   /* operator: Logical
+      && - return true if both expression are true, otherwise it returns false
+          if side left is true, return value side right.
+          if side left is false, return value side left.
+      || - return the first truthy value.
+      !  - return true for false statements and false for true statements.
+      !! - return value negative of !
+      ?? - return the first defined value
+   */
+
+   // &&: 
+   console.log('&&: ', {
+    option1: true && 'tony',
+    option2: 'tony' && true, // Boolean('tony') && true -> true && true
+    option3: 'tony' && 'man', // Boolean('tony') && 'man' -> true && 'man'
+    option4: 'dasd' && false,
+    option5: (20 > 10) && 'ana'
+  })
+  
+  // ||: không quan tâm vế trái/phải, khi toán tử nào là true thì lấy toán tử đó
+  console.log('||: ', {
+    option1: false || 'tony',
+    option2: 'anna' || 20 > 30,
+    option3: 'man' || 'anna', 
+    option4: true || false,
+    option5: false || true
+  })
+
+  // !: phủ định của toán tử -> return boolean
+  console.log('!: ', {
+    option1: !true, // false
+    option2: !false, // true
+    option3: !!'tony', // true
+    option4: !'anna', // false
+    option5: !!!0, // true , !!!0 -> !!true -> !false -> true
+    option6: !1, // false,
+    option7: !!{} // !!Boolean({}) -> !!true -> !false -> true
+  })
+
+  const firstName = 'tony'; // BE return data
+  // firstName co gia tri: -> console.log('has data')
+  // firstName khong co gia tri: -> console.log('no data')
+  if(firstName !== '') {
+    console.log('has data')
+  } else {
+    console.log('no data')
+  }
+
+  // ?? - return the first defined value
+  console.log('|| and ??: ', {
+    option1: '' || 'tony', // 'tony'
+    option2: '' ?? 'tony', // '', Boolean('') -> false -> 0 ?? 'tony' -> ''
+    option3: 'anna' ?? "",
+    option4: undefined || 'tony', // 'tony',
+    option5: undefined ?? 'tony', // 'tony',
+    option6: 0 || 'tony', // 'tony',
+    option7: 0 ?? 'tony', // 0,
+  })
+
+  const total = 0;
+  console.log('html cart: ', total ?? 'empty cart')
+
+  /* ==: equal value
+    - returning a Boolean result. 
+    - It attempts to convert and compare operands that are of different types.
+
+  option1: If the operands are both objects, return true only if both operands reference the same object.
+
+  option2: If the operands are of different types, try to convert them to the same type before comparing:
+    2.1: When comparing a number and a string, try to convert the string to a numeric value.
+    2.2: If one of the operands is Boolean, convert the Boolean operand to number. true -> 1, false -> 0.
+    2.3: If one of the operands is an object and the other is a number or a string, try to convert the object to a primitive using the object's valueOf() and toString() methods.
+      - The valueOf() method returns the primitive value of a string.
+      - The valueOf() method does not change the original string.
+      - The valueOf() method can be used to convert a string object into a string.
+
+    Fomular:
+    x             y
+    null          undefined -> true
+    number        string -> x == Number(y)
+    boolean       any -> Number(x) == y
+  */
+  console.log('==: ', {
+    option1: {} == {}, // false
+    "option2.1": 1 == '110', // 1 == Number('110') -> 1 == 110-> false
+    "option2.1 b": 1 == 'anna', // 1 == Number('anna') -> 1 == NaN-> false
+    "option2.2": true == 1, // Boolean(true) == 1 -> 1 == 1 -> true
+    "option2.2 b": false == 0, // Boolean(false) == 0 -> 0 == 0 -> true
+    "string": 'anna' == 'nana' // false
+  })
+
+  // valueOf()
+  const title = new String('anna');
+  const eleven = new Number(123213);
+  console.log('typeof: ', {
+    title: typeof title, // object
+    eleven: typeof eleven, // object
+    titleValueOf: typeof title.valueOf(), // string
+    elevenValueOf: typeof eleven.valueOf(), // number
+    compare:  'tony' == title, // 'tony' == title.valueOf() -> 'tony' == 'anna' -> false
+    compareNumber: 11 == eleven // 11 == eleven.valueOf() -> 11 == 123213 -> true
+  })
+
+  console.log('interview == : ', "pack" == true); // man: false, anna: false
+  // "pack" == true -> "pack" == Boolean(true) -> "pack" == 1 -> Number('pack') == 1 -> NaN == 1 -> false
+
+  // tenary: condition ? true : false
+  // function conditionChains() {
+  //   return condition1 ? value1 
+  //         : condition2 ? value2
+  //         : condition3 ? value3
+  //         : otherValue
+  // }
+
+  // bai tap: tenary chains -> return value
+  // show montly by number: 1 - January, 2 - February, 3 - March, 4 - April, 5 - May, 6 - June, 7 - July, 8 - August, 
+  // 9 - September, 10 - October, 11 - November, 12 - December
+  function showMontly(number) {
+          return number === 1 ? "January" 
+                : number === 2 ? "February"
+                : number === 3 ? "March"
+                : number === 4 ? "April"
+                : number === 5 ? "May"
+                : number === 6 ? "June"
+                : number === 7 ? "July"
+                : number === 8 ? "August"
+                : number === 9 ? "September"
+                : number === 10 ? "October"
+                : number === 11 ? "November"
+                : number === 12 ? "December"
+                : "Not a month"
+  }
+
+for (let i = 0 ; i < 13; i ++){
+  console.log(showMontly(i));
+}
+
+  </script>
+</body>
+</html>
+
+

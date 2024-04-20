@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>array</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body style="padding: 0 20px">
+  <h1>
+    loop array
+  </h1>
+  <div id="idPerson"></div>
+
+  <h1 class="text-[40px] text-bold">Products</h1>
+  <br />
+
+  <div id="products_container">
+    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+        <p class="text-gray-700 text-base">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <br />
+  <br />
+  <br />
+
+  <script type="text/javascript">
+    // create array
+    const numbs = [];
+    const persons = [];
+
+    for(let i = 0; i < 10; i++) {
+      // install element in array
+      numbs.push(i + 1);
+      const person = {
+        id: Date.now(), // timestamp
+        title: i + 1
+      }
+      persons.push(person)
+    }
+    console.log('numbs: ', numbs)
+    console.log('persons: ', persons)
+
+    // access item in array
+    console.log('access first element: ', persons[0]);
+    console.log('access last element: ', persons[persons.length - 1]);
+
+    /*  loop array
+      - for ... loop
+      - for ... of
+      - for ... in
+      - forEach
+
+      => not return new array
+    */
+    const divPerson = document.getElementById('idPerson');
+    for(let i = 0; i < persons.length; i++) {
+      const title = persons[i].title;
+      const divData = document.createElement('div')
+      divData.innerText = `Title ${title}`; // template string
+      divPerson.appendChild(divData)
+    }
+
+    const users = [
+      { id: 1, firstName: 'tony', lastName: 'nguyen' },
+      { id: 2, firstName: 'anna', lastName: 'us' },
+      { id: 3, firstName: 'man', lastName: 'can' }
+    ]
+    /* 
+      output = {
+        1: 'tony nguyen',
+        2: 'anna us',
+        3: 'man can'
+      }
+    */
+   let output = {};
+   users.forEach(function(user) {
+    output = {
+      ...output, // copy properties of object
+      [user.id]: `${user.firstName} ${user.lastName}`
+    }
+   })
+   console.log("forEach: ", output)
+
+   /*
+    - push() method adds one or more elements to the end of an array and 
+    returns the new length of the array.
+    - pop() method removes the last element from an array and 
+    returns that element. This method changes the length of the array.
+
+    Notes: don't return new array
+   */
+  const animals = [
+    { id: 1, category: 'chim', name: 'andy' },
+    { id: 2, category: 'ca', name: 'dolphin' },
+    { id: 3, category: 'meo', name: 'cat' },
+  ]
+  // const animalLengh = animals.push({
+  //   id: Math.random(), category: 'chim', name: 'tuktuk'
+  // })
+  animals.push({
+    id: Math.random(), category: 'chim', name: 'tuktuk'
+  })
+  const animalLength = animals.length;
+
+  console.log('push: ', animalLength, animals);
+
+  // pop
+  animals.pop();
+  animals.pop();
+  console.log('pop: ', animals);
+
+    /*
+      - shift() method removes the first element from an array and 
+      returns that removed element. This method changes the length of the array.
+      - unshift() method adds one or more elements to the beginning 
+      of an array and returns the new length of the array.
+
+      Notes: don't return new array
+   */
+   const birds = [
+      { id: 1, category: 'chim', name: 'andy' },
+      { id: 2, category: 'chim', name: 'tuk' },
+      { id: 3, category: 'chim', name: 'cat' },
+    ]
+    birds.unshift({
+      id: Math.random(), category: 'chim', name: 'tuktuk'
+    })
+    const birdsLength = birds.length;
+
+    console.log('unshift: ', birdsLength, birds);
+
+    // shift()
+    birds.shift();
+    birds.shift();
+    console.log('shift: ', birds);
+
+    // bai tap add, remove products
+    const productContainer = document.getElementById('products_container');
+    const products = [
+      { 
+        id: Math.floor(Math.random() * 100), 
+        name: 'laptop', 
+        description: 'make by apple' 
+      },
+      { 
+        id: Math.floor(Math.random() * 100), 
+        name: 'iphone15', 
+        description: 'iphone15 by apple' 
+      }
+    ]
+
+    products.forEach(product => {
+      const card = document.createElement('div');
+      card.setAttribute('class', 'max-w-sm rounded overflow-hidden shadow-lg');
+
+      const cardContent = document.createElement('div');
+      cardContent.setAttribute('class', 'px-6 py-4');
+
+      const cardTitle = document.createElement('div');
+      cardTitle.setAttribute('class', 'font-bold text-xl mb-2');
+      cardTitle.innerHTML = product.name;
+
+      const cardDescription = document.createElement('p');
+      cardDescription.setAttribute('class', 'text-gray-700 text-base');
+      cardDescription.innerHTML = product.description
+
+      cardContent.appendChild(cardTitle);
+      cardContent.appendChild(cardDescription);
+      card.appendChild(cardContent);
+      productContainer.appendChild(card);
+    })
+
+    /*
+      The splice() method changes the contents of an array by removing or replacing existing elements and/or adding new elements. 
+      Syntax:  splice(start, deleteCount, item1, item2, itemN)
+        - start (require): The index at which to start changing the array.
+        - deleteCount (optional): An integer indicating the number of elements in the array to remove from start.
+        - item1, item2 … (optional): The elements to add to the array, beginning from start
+
+      Sample:
+        - [].splice(2) -> remove 1 item from index 2
+        - [].splice(2, 2) -> remove 2 item from index 2 
+        - [].splice(2, 2, 3) -> remove 2 item from index 2 and add item 3 into array from index 2
+        = [].splice(1, 0, 3) -> add item 3 at from index 1
+    */
+    const months = ['Jan', 'March', 'Feb', 'May'];
+    months.splice(2, 2, 'April')
+    console.log('splice array: ', months); //  ['Jan', 'March', 'April']
+
+    // Remove 0 elements before index 2, and insert "October" and "November"
+    // const output = ['Jan', 'March', "October", "November", 'Feb', 'May']
+
+    // Remove 2 elements from index 0, and insert "parrot", "anemone" and "blue"
+    // const output = ["parrot", "anemone", "blue", 'Jan', 'March', 'Feb', 'May'];
+
+    /*
+      The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.
+      If you need to find the index of a value, use Array.prototype.indexOf().
+      Syntax:  indexOf(searchElement, fromIndex)
+      - searchElement (require): Element to locate in the array.
+      - fromIndex (optional): The index to start the search at. 
+
+      NOTE: it just only work when number[], string[], boolean[] .... 
+    */
+    const animalsIndexOf = ['ant', 'beast', 'dophin', 'fish', 'dophin'];
+    console.log('indexOf array: ', animalsIndexOf.indexOf('dophin'))
+
+    /*
+      The filter() method creates a new array with all elements that pass the test implemented by the provided function.
+      Syntax:  filter(ele => { … })
+    */
+   const laptop = products.filter((product) => {
+    return product.name === 'laptop'
+   })
+   console.log('filter array: ', laptop);
+
+
+   const monthsFilter = ['Jan', 'March', 'Feb', 'May'];
+   const monthsLength = monthsFilter.filter(month => {
+    return month.length > 3
+   })
+   console.log('filter monthsLength: ', monthsLength);
+
+   /*
+    If you need the index of the found element in the array, use findIndex().
+    The findIndex() method returns the index of the first element in the array that satisfies the provided testing function. Otherwise, it returns -1
+   */
+
+   const monthsFindIndex = ['Jan', 'March', 'Feb', 'May'];
+   const monthsFindIndexResult = monthsFilter.findIndex(month => {
+    return month === 'Feb'
+   })
+   
+   console.log('findIndex monthsLength: ', monthsFindIndexResult);
+
+   //vide vs object[]
+   const productFindIndex = products.findIndex(product => {
+    return product.name === 'iphone15'
+   })
+   console.log('findIndex productFindIndex: ', productFindIndex);
+
+   /* map()
+    The map() method creates a new array populated with the results of calling a 
+    provided function on every element in the calling array.
+   */
+  const pValue = [3,5,3000, 76,8,8,45];
+  
+  const pValueMap = pValue.map(item => {
+    return item % 2 === 0;
+  })
+  console.log('pValue map: ', pValueMap)
+
+  const priceProducts = products.map(product => {
+    return {
+      ...product, // copy all property of product
+      price: 200
+    }
+  })
+  console.log('priceProducts map: ', priceProducts)
+
+  // sort
+  pValue.sort((a, b) => {
+    if(a > b) return -1; // dương  -> đẩy a về phía tay phải
+    if(a < b) return 1; // âm  -> đẩy a về phía tay trái
+    return 0
+  });
+  // 1
+    // 3 vs 5 -> 3 < 5 -> -1 -> [3]
+    // 5 vs 3000  -> 5 <  3000 -> -1 [3, 5] 
+    // 3000 vs 76 -> 3000 > 76 -> 1 [3, 5, 76, 3000] 
+    // 3000 vs 8 -> 1 [3, 5, 76, 8, 3000] 
+    // 3000 vs 8 -> 1 [3, 5, 76, 8, 8, 3000] 
+    // 3000 vs 45 -> 1 [3, 5, 76, 8, 8, 45, 3000] 
+  console.log('sort pValue: ', pValue)
+
+
+  /*
+  The reduce() method executes a reducer function (that you provide) on each element of the array, resulting in a single output value.
+  The reduce function takes four arguments:
+    [].reduce((acc, curr, index, array) => {
+      return acc
+    }, {})
+    accumulator: The accumulator accumulates callbackFn's return values.
+    currentValue: The current element being processed in the array.
+    currentIndex (optional): The index of the current element being processed in the array. Starts from index 0 if an initialValue is provided.
+    array (optional): The array reduce() was called upon.
+  */
+    const ipm = [2, 6, 6, 34, 53]; // total -> 101
+    const sumReduce = ipm.reduce((acc, curr) => {
+      console.log('sumReduce: ', acc, curr)
+      return acc = acc + curr;
+    }, 0)
+    console.log('sumReduce: ', sumReduce);
+
+    const shoppingCart = [
+      {
+        id: 1,
+        name: 'samsung',
+        price: 10,
+        quality: 2
+      },
+      {
+        id: 1,
+        name: 'iphone',
+        price: 5,
+        quality: 3
+      }
+    ];
+    // total: 20 + 15 = 35
+    const cartReduce = shoppingCart.reduce((acc, curr) => {
+      console.log('cartReduce: ', acc, curr)
+      // loop 1: acc = 0 + (10 * 2) = 20
+      // loop 2: acc = 20 + (5 * 3) = 35
+      return acc = acc + (curr.price * curr.quality);
+    }, 0)
+    console.log('cartReduce: ', cartReduce);
+
+    // baitap 1
+
+     // shopping cart
+     const productsBt1 = [
+        { name: 'banana', quality: 10, price: 20 },
+        { name: 'laptop', quality: 2, price: 15 },
+        { name: 'iphone', quality: 10, price: 4 },
+      ];
+      // output: 10 * 20 + 2 * 15 + 10 * 4 = 270
+
+      // baitap 2
+       // count values in objects
+       const identifies = ['Truong', 'Tony', 'Hau', 'Truong', 'Truong', 'Hau'];
+          /*
+        output
+        {
+          'Truong': 3,
+          'Tony': 1,
+          'Hau': 2
+        }
+      */
+
+      const reduceIdentifies = identifies.reduce((acc, curr) => {
+        if(!acc[curr]) acc[curr] = 1;
+        else acc[curr] = acc[curr] + 1
+        return acc;
+      }, {})
+
+      console.log(output); // Output: { Truong: 3, Tony: 1, Hau: 2 }
+      console.log('reduceIdentifies: ', reduceIdentifies); // Output: { Truong: 3, Tony: 1, Hau: 2 }
+
+      // bai tap 3:
+      // group object by a property
+              /*
+        output group by age
+        {
+          20: [
+            { name: 'Truong', age: 20 },
+            { name: 'Hau', age: 20 },
+          ],
+          32: [
+            { name: 'Tony', age: 32 },
+          ],
+          21: [
+            { name: 'Duy', age: 21 }
+          ]
+        }
+      */
+      const peoples = [
+        { name: 'Truong', age: 20 },
+        { name: 'Hau', age: 20 },
+        { name: 'Tony', age: 32 },
+        { name: 'Duy', age: 21 },
+        { name: 'Duy', age: 20 },
+      ];
+    
+      const groupPeople = peoples.reduce((acc, curr) => {
+        const key = curr.age; 
+        if(!acc[key]) acc[key] = [];
+        acc[key].push(curr);
+
+        return acc;
+      }, {})
+      
+      console.log('groupPeople: ', groupPeople)
+
+      // bai  tap concat
+      const friends = [
+        {
+          name: 'Anna',
+          books: ['Bible', 'Harry Potter'],
+          age: 21,
+        },
+        {
+          name: 'Bob',
+          books: ['War and peace', 'Romeo and Juliet'],
+          age: 26,
+        },
+        {
+          name: 'Alice',
+          books: ['The Lord of the Rings', 'The Shining'],
+          age: 18,
+        },
+      ];
+
+      /* output = [
+        'Bible', 'Harry Potter', 'War and peace', 'Romeo and Juliet', 'The Lord of the Rings', 'The Shining'
+      ]
+      */
+      const bookReduce = friends.reduce((acc, curr) => {
+        const books = curr.books;
+        return acc.concat(books);
+      }, [])
+      console.log('bookReduce: ', bookReduce)
+
+      /* find
+        The find() method returns the value of the first element in the provided array that satisfies,
+         the provided testing function. If no values satisfy the testing function, undefined is returned.
+      */
+     const numbers = [2,5,13,612,53,45]
+     // callfunction () => {} (syntax arrow function)
+     const numberTwo = numbers.find((ele) => ele % 2 !== 0)
+     console.log("find number: ", numberTwo)
+
+     const person = [
+      { id: 1, name: 'tony' },
+      { id: 1, name: 'man' },
+      { id: 1, name: 'washington' }
+     ]
+     const personname = person.find((ele) => ele.name.length > 5)
+     console.log("find person: ", personname)
+
+     /* includes
+        If you need to find if a value exists in an array, use Array.prototype.includes(). 
+        Again, it checks each element for equality with the value instead of using a testing function.
+        The includes() method determines whether an array includes a certain value among its entries, returning true or false as appropriate.
+          searchElement: The value to search for.
+          fromIndex Optional : The position in this array at which to begin searching for searchElement.
+          const array1 = [2,34,242,4]
+          const output = array1.includes(2)
+      */
+     const searchValue = 'tony';
+     const sortPerson = person.filter(ele => ele.name.toLowerCase().includes(searchValue.toLowerCase()))
+     console.log("includes person: ", sortPerson)
+
+     
+
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>javascript html dom</title>
+  
+</head>
+<body>
+  <h1 id="first" class="firstTitle">first heading</h1>
+  <h1 class="firstTitle">second heading</h1>
+  <h1 class="firstTitle">third heading</h1>
+  <h1 class="fourTitle">four heading</h1>
+
+  <script type="text/javascript">
+    const heading = document.getElementsByTagName('h1');
+    console.log("getElementsByTagName: ", heading);
+
+    const idHeading = document.getElementById('first');
+    console.log("getElementById: ", idHeading);
+    idHeading.setAttribute('style', 'color: red'); // add attr css
+    idHeading.innerHTML = 'tony heading 1'; // add text html
+
+    const classHeading = document.getElementsByClassName('firstTitle');
+    console.log("getElementsByClassName: ", classHeading);
+
+
+    // virtual dom
+    const aLink = document.createElement('a');
+    aLink.setAttribute('href', 'https://www.google.com/')
+    // aLink.setAttribute('class', 'download link aLink');
+    aLink.classList.add('download', 'link', 'aLink');
+    aLink.setAttribute('style', 'cursor: pointer');
+    aLink.innerHTML = 'Download'
+
+    // append element in DOM
+    idHeading.appendChild(aLink);
+    // document.body.appendChild(aLink);
+    
+  </script>
+</body>
+</html>
+
+

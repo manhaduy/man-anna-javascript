@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>array</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body style="padding: 0 20px">
+  <h1>
+    loop array
+  </h1>
+  <div id="idPerson"></div>
+
+  <h1 class="text-[40px] text-bold">Products</h1>
+  <br />
+
+  <div id="products_container">
+    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+        <p class="text-gray-700 text-base">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <br />
+  <br />
+  <br />
+
+  <script type="text/javascript">
+
+    // baitap 1
+
+     // shopping cart
+     const productsBt1 = [
+        { name: 'banana', quality: 10, price: 20 },
+        { name: 'laptop', quality: 2, price: 15 },
+        { name: 'iphone', quality: 10, price: 4 },
+      ];
+      // output: 10 * 20 + 2 * 15 + 10 * 4 = 270
+      //const productsBt1Length = productsBt1.length();
+      const productReduce = productsBt1.reduce((acc, curr) => {
+      console.log('productReduce: ', acc, curr)
+      // loop 1: acc = 0 + (10 * 20) = 200
+      // loop 2: acc = 200 + (2 * 15) = 230
+      // loop 3: acc = 230 + (10 * 4) = 270
+      return acc = acc + (curr.quality * curr.price);
+    }, 0)
+    console.log('productReduce: ', productReduce);
+
+
+    
+      // baitap 2
+       // count values in objects
+       
+          /*
+        output
+        {
+          'Truong': 3,
+          'Tony': 1,
+          'Hau': 2
+        }
+      */
+      const identifies = ['Truong', 'Tony', 'Hau', 'Truong', 'Truong', 'Hau'];
+
+      const output = {}
+
+        for (let i = 0; i < identifies.length; i++) {
+            const name = identifies[i]; //  extracts the current name from the identifies array at the index i.
+        if (!output[name]) {             //checks if the key name already exists as a key in the output object.
+            output[name] = 1;           // If key name do not exist, create key name and assigns the value 1 to that key. 
+        } else {
+            output[name] = output[name] + 1; // If exist, increments the value associated with the name key by 1
+        }
+        }
+
+    console.log(output); // Output: { Truong: 3, Tony: 1, Hau: 2 }
+
+      // bai tap 3:
+      // group object by a property
+              /*
+        output group by age
+        {
+          20: [
+            { name: 'Truong', age: 20 },
+            { name: 'Hau', age: 20 },
+          ],
+          32: [
+            { name: 'Tony', age: 32 },
+          ],
+          21: [
+            { name: 'Duy', age: 21 }
+          ]
+        }
+      */
+      const peoples = [
+        { name: 'Truong', age: 20 },
+        { name: 'Hau', age: 20 },
+        { name: 'Tony', age: 32 },
+        { name: 'Duy', age: 21 },
+        { name: 'Duy', age: 20 },
+      ];
+    
+    // return array of filtered people with age 20 (array name is 20)
+   const age20 = peoples.filter((people) => {
+    return people.age === 20
+   })
+
+   const age32 = peoples.filter((people) => {
+    return people.age === 32
+   })
+
+   const age21 = peoples.filter((people) => {
+    return people.age === 21
+   })
+   
+   //Make object with the key name 20 with filtered array as value
+   let ageGroup20 = [];
+   age20.forEach(function(person) {
+    ageGroup20 = {
+      ...ageGroup20, 
+      [person.age]: age20
+    }
+   })
+
+   let ageGroup21 = [];
+   age21.forEach(function(person) {
+    ageGroup21 = {
+      ...ageGroup21, 
+      [person.age]: age21
+    }
+   })
+
+   let ageGroup32 = [];
+   age32.forEach(function(person) {
+    ageGroup32 = {
+      ...ageGroup32, 
+      [person.age]: age32
+    }
+   })
+
+   console.log("ageGroup20: ", ageGroup20)
+   console.log("ageGroup21: ", ageGroup21)
+   console.log("ageGroup32: ", ageGroup32)
+
+   //combine all object 
+   const combinedAgeGroup = { ...ageGroup20, ...ageGroup21, ...ageGroup32 };
+   console.log("combinedAgeGroup: ", combinedAgeGroup)
+
+  </script>
+</body>
+</html>
+

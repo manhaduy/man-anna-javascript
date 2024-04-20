@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>compare-object</title>
+  
+</head>
+<body>
+  <h1>
+    compare-object
+  </h1>
+
+  <script type="text/javascript">
+    /*
+      - Deep equality (so sánh sâu)
+    */
+    const hero1 = {
+      name: 'Thor',
+      weapon: 'Armor',
+      year: 2000,
+      address: {
+        street: '50 main st',
+        zip: '02101'
+      }, // object
+    }
+    const hero2 = {
+      name: 'Thor',
+      weapon: 'Armor',
+      year: 2000,
+      address: {
+        street: '50 main st',
+        zip: '100'
+      } // // object
+    }
+
+    // deep equality
+    function isObject(value) {
+      return value != null && typeof value === 'object';
+    }
+
+    function isDeepEquality(objectA, objectB) {
+      const keysA = Object.keys(objectA);
+      const keysB = Object.keys(objectB);
+
+      if(keysA.length !== keysB.length) {
+        return false;
+      }
+      console.log('keysA: ', keysA)
+
+      for(let key of keysA) {
+        const areObjects = isObject(objectA[key]) && isObject(objectB[key]);
+        console.log('loop: ',key, objectA[key], objectB[key])
+        
+        if(areObjects && !isDeepEquality(objectA[key], objectB[key]) || !areObjects && objectA[key] !== objectB[key]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+    console.log('deep equality: ', isDeepEquality(hero1, hero2));
+
+
+
+  </script>
+</body>
+</html>
+
+

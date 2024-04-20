@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Destructuring</title>
+  
+</head>
+<body>
+  <h1>
+    Destructuring
+  </h1>
+
+  <script type="text/javascript">
+    /*
+in ra year của car, name của car, firstName cua author, firstName cua person
+
+vs es6 destructuring
+*/
+
+const person = {
+    firstName: 'tony',
+    lastName: 'nguyen',
+    address: {
+      city: 'hcm',
+      district: '3',
+      author: {
+        firstName: 'man'
+      }
+    },
+    assertment: {
+      car: {
+        name: 'city',
+        brand: {
+          name: 'honda',
+          year: 2024
+        }
+      }
+    }
+  }
+
+const {
+    firstName: firstNamePerson,
+    address: {
+      city,
+      district,
+      author: {
+        firstName: firstNameAuthor,
+      }
+    },
+    assertment: {
+      car: {
+        name,
+        brand: {
+          year,
+        }
+      }
+    }
+} = person;
+
+console.log('Destructuring person: ',{
+    firstNamePerson,
+
+
+})
+
+</script>
+</body>
+</html>

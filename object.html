@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>object</title>
+  
+</head>
+<body>
+  <h1>
+    object
+  </h1>
+
+  <h2>
+    Ordered object
+  </h2>
+  <div id="orderedObject"></div>
+  <div id="metricGroup"></div>
+
+  <script type="text/javascript">
+    // shorthand: when name & value of property are the same
+    function addTodo(title, description) {
+      return {
+        title,
+        description,
+        isCompleted: false
+      }
+    }
+    const newTodo = addTodo('learn JS', 'learn JS object');
+    console.log('shorthand: ', newTodo)
+
+    // define object
+    // key/name = value
+    const persons = {
+      firstName: 'John', // string
+      lastName: 'Doe', // string
+      age: 30, // number
+      isStudent: false, // boolean
+      address: { //  nested object
+        street: '50 main st',
+        city: 'Boston',
+        state: 'MA',
+        zip: '02101'
+      },
+      skills: ['HTML', 'CSS', 'JS'], // array
+      "like birds": true, // multi-word property name
+      // method
+      print: function(middleName = 'nguyen') {
+        return this.firstName + ' ' + this.lastName + ' ' + middleName;
+      }
+    }
+    const printFullName = persons.print('tran');
+    console.log('printFullName: ', printFullName)
+
+    // add properties to object
+    persons.author = {
+      firstName: 'Tony',
+      lastName: 'Stark'
+    }
+    persons['learn subject'] = 'javascript';
+
+    /* access properties
+    - dot notation: objectName.propertyName
+    - bracket notation: objectName['propertyName']
+    - destructuring: const { propertyName } = objectName
+    */
+
+    console.log('dot notation: ', persons.address)
+    console.log('bracket notation: ', persons['learn subject'])
+
+    // destructuring: extract properties from object
+    const { firstName, lastName } = persons;
+    console.log('destructuring: ', firstName, lastName)
+
+    /* for ... in object
+      - loop through the properties of an object
+      - get keys/names of object
+    */
+   for(let key in persons) {
+    console.log('for ... in object get key: ', key);
+    // key = firstName -> persons[key] -> persons['firstName'] -> 'John'
+    // key = 'like birds' -> persons[key] -> persons['like birds'] -> true
+    console.log('for ... in object get value: ', persons[key]);
+   }
+
+   /* in operator
+   - check if a property is in an object
+   - return boolean
+   */
+   console.log('in operator: ', 'firstName' in persons)
+
+   /* ordered object
+
+   */
+  const code = {
+    "+49": "Germany",
+    "+41": "Switzerland",
+    "+44": "Great Britain",
+    "+1": "USA",
+    "+2": "VN",
+    "+95": "JP",
+    "+10": "AU",
+    "+9": "CA"
+  }
+
+  for(let key in code) {
+    console.log('ordered object: ', key, code[key]);
+    // get element of node DOM
+    document.getElementById('orderedObject').innerHTML += `<p>${key}: ${code[key]}</p>`
+  }
+
+  // show metric
+  const metricGroups = {
+    "+User count": {
+      value: "User count",
+      label: "User count",
+      order: 1,
+    },
+    "+Retention": {
+      value: "Retention",
+      label: "Retention",
+      order: 2,
+    },
+    "+Time engagement": {
+      value: "Time engagement",
+      label: "Time engagement",
+      order: 3,
+    },
+    "+Activation Metrics": {
+      value: "Activation Metrics",
+      label: "Activation Metrics",
+      order: 4,
+    },
+    "+UV ULRD": {
+      value: "UV ULRD",
+      label: "UV ULRD",
+      order: 5,
+    },
+  };
+
+  /* 
+   - convert object to array
+    - sort array
+  */
+  // const metricArrays = Object.keys(metricGroups).map(key => metricGroups[key]);
+  // metricArrays.forEach(metric => {
+  //   document.getElementById('metricGroup').innerHTML += `<p>${metric.value}: ${metric.label}</p>`
+  // })
+
+ for(let key in metricGroups) {
+    // get element of node DOM
+    document.getElementById('metricGroup').innerHTML += `<p>${key}: ${metricGroups[key].label}</p>`
+  }
+  console.log('persons: ', persons)
+
+  /* clone/copy object
+    Notes: properties of object will be overridden if they have the same name
+      - Use the spread (...) syntax -> shallow copy
+      - Use the Object.assign() method -> shallow copy
+      - Use the JSON.stringify() and JSON.parse() methods -> deep copy
+
+    shallow clone/copy: copy properties of object, share same reference of nested object
+    deep clone/copy: copy properties of object, copy reference of nested object
+  */
+ const personA = {
+  firstName: 'John', // primitive type -> compare value
+  lastName: 'Doe',
+ }
+ const personB = {
+  age: 18,
+  address: {
+    street: '50 main st',
+    city: 'Boston',
+  }, // nested object -> non-primive type -> compare reference
+  firstName: 'anna'
+ }
+ // spread syntax
+ const clonePerson = { ...personB, ...personA };
+ console.log('cloned object with spread syntax: ', clonePerson)
+
+ // object.assign()
+ const clonePerson2 = Object.assign({}, personA, personB);
+ console.log('cloned object with object.assign: ', clonePerson2)
+
+ // JSON.stringify() and JSON.parse()
+ const clonePerson3 = JSON.parse(JSON.stringify(personA));
+ console.log('cloned object with  JSON.stringify() and JSON.parse(): ', clonePerson3)
+
+ // shallow clone/copy
+ const originalCar = {
+  model: 'BMW',
+  year: 2020,
+  color: 'black',
+  owner: {
+    name: 'John',
+    age: 30
+  }
+ }
+
+ // shallow copy
+ const clonedCar  = { ...originalCar }; 
+ clonedCar.model = 'Toyota'; // update property of object
+ clonedCar.owner.name = 'Man'; // update nested object
+ console.log("shallow copy", {
+  originalCar,
+  clonedCar
+ });
+
+ // deep copy
+ const deepCloneCar = JSON.parse(JSON.stringify(originalCar));
+ deepCloneCar.owner.age = 18; // update nested object
+ console.log('deep copy', {
+  deepCloneCar,
+  originalCar
+ })
+
+ // delete object property
+ delete deepCloneCar.color;
+ console.log('delete object property', deepCloneCar);
+
+ /* convert object to array
+  - Object.keys(objectName) -> array of keys
+  - Object.values(objectName) -> array of values
+  - Object.entries(objectName) -> array of key-value pairs
+ */
+const todo = {
+  title: 'learn JS',
+  description: 'learn JS object',
+  isCompleted: false
+}
+console.log('object key: ', Object.keys(todo))
+console.log('object value: ', Object.values(todo))
+console.log('object key-value: ', Object.entries(todo));
+
+  /* in operator
+    Use: in operator
+    Check exist property.
+    Return boolean
+  */
+ const person = {
+  firstName: 'John',
+  lastName: 'Doe',
+ }
+ if("age" in person) {
+  console.log('exist property')
+ } else {
+  person.age = 30;
+ }
+  console.log('in operator person: ', person)
+    
+
+  </script>
+</body>
+</html>
+
+

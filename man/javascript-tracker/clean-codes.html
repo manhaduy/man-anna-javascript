@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Data Type</title>
+  
+</head>
+<body>
+  <h1>
+    Data Type
+  </h1>
+
+  <script type="text/javascript">
+    // baitap: return early
+    // show montly by number: 1 - January, 2 - February, 3 - March, 4 - April, 5 - May, 6 - June, 7 - July, 8 - August, 9 - September, 
+    // 10 - October, 11 - November, 12 - December
+        
+    // <--WAY 1-->
+
+    console.log('WAY 1')
+    function showMontly(number) {
+
+    if(typeof number === 'number' && number === 1) {
+        return number + " - " + "January"; 
+      }
+
+      if(typeof number === 'number' && number === 2) {
+        return number + " - " + "Febuary"; 
+      }
+
+      if(typeof number === 'number' && number === 3) {
+        return number + " - " + "March"; 
+      }
+
+      if(typeof number === 'number' && number === 4) {
+        return number + " - " + "April"; 
+      }
+
+      if(typeof number === 'number' && number === 5) {
+        return number + " - " + "May"; 
+      }
+
+      if(typeof number === 'number' && number === 6) {
+        return number + " - " + "June"; 
+      }
+
+      if(typeof number === 'number' && number === 7) {
+        return number + " - " + "July"; 
+      }
+
+      if(typeof number === 'number' && number === 8) {
+        return number + " - " + "August"; 
+      }
+
+      if(typeof number === 'number' && number === 9) {
+        return number + " - " + "September"; 
+      }
+
+      if(typeof number === 'number' && number === 10) {
+        return number + " - " + "October"; 
+      }
+
+      if(typeof number === 'number' && number === 11) {
+        return number + " - " + "November"; 
+      }
+
+      if(typeof number === 'number' && number === 12) {
+        return number + " - " + "December"; 
+      }
+      return 'Not a month';
+    }
+
+    for (let i = 0 ; i < 13; i ++){
+        console.log(showMontly(i));
+        }
+
+    // <--WAY 2-->
+    console.log('WAY 2')
+    function showMontly2(number) {
+    if(typeof number === 'number' && number === 1) {
+        return number + " - " + "January"; 
+      }
+    else if(typeof number === 'number' && number === 2) {
+        return number + " - " + "Febuary"; 
+      }
+    else if(typeof number === 'number' && number === 3) {
+        return number + " - " + "March"; 
+      }
+    else if(typeof number === 'number' && number === 4) {
+        return number + " - " + "April"; 
+      }
+    else if(typeof number === 'number' && number === 5) {
+        return number + " - " + "May"; 
+      }
+    else if(typeof number === 'number' && number === 6) {
+        return number + " - " + "June"; 
+      }
+    else if(typeof number === 'number' && number === 7) {
+        return number + " - " + "July"; 
+      }
+    else if(typeof number === 'number' && number === 8) {
+        return number + " - " + "August"; 
+      }
+    else if(typeof number === 'number' && number === 9) {
+        return number + " - " + "September"; 
+      }
+    else if(typeof number === 'number' && number === 10) {
+        return number + " - " + "October"; 
+      }
+    else if(typeof number === 'number' && number === 11) {
+        return number + " - " + "November"; 
+      }
+    else if(typeof number === 'number' && number === 12) {
+        return number + " - " + "December"; 
+    }
+    else{
+      return 'Not a month';
+    }}
+
+    for (let i = 0 ; i < 13; i ++){
+        console.log(showMontly2(i));
+        }
+
+  </script>
+</body>
+</html>
+
+

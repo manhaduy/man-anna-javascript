@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>closure</title>
+  
+</head>
+<body>
+  <h1>
+    closure
+  </h1>
+
+  <script type="text/javascript">
+
+  /*
+    Exercises: Level 1
+    Create a closure which has one inner function (mỗi khi excute inner function thì total tăng lên 1 đơn vị)
+   */
+      function createCounter(name) {
+      let total = 0;
+
+      function increment() {
+        total++;
+        return total + ' ' + name;
+      }
+
+      return increment;
+    }
+
+    const counter = createCounter('Alice');
+    console.log('counter ' + counter()); 
+    console.log('counter ' + counter()); 
+    console.log('counter ' + counter()); 
+
+   /*
+    Exercises: Level 2
+    Create a closure which has three inner functions (mỗi khi excute inner function thì total tăng lên 1 đơn vị)
+  */
+      function newCounter() {
+      let total = 0;
+
+      function increase() {
+        total++;
+        return total;
+      }
+
+      function decrease() {
+        total--;
+        return total;
+      }
+
+      function currentCount() {
+        return total;
+      }
+
+      return {
+        increase,
+        decrease,
+        currentCount
+      };
+    }
+
+    const myCounter = newCounter();
+    console.log('increase ' + myCounter.increase()); 
+    console.log('increase ' + myCounter.increase()); 
+    console.log('decrease ' + myCounter.decrease()); 
+    console.log('decrease ' + myCounter.decrease()); 
+    console.log('current count ' + myCounter.currentCount()); 
+
+  </script>
+</body>
+</html>
+
+

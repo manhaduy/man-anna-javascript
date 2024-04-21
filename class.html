@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Class</title>
+  
+</head>
+<body>
+  <h1>
+    Class javascript
+  </h1>
+
+  <script type="text/javascript">
+    /* instance =  thực thể 
+      Create an instance by "new" keywords
+    */
+
+    /* class
+      - no hoisting
+    */
+    function Persons() {
+      return {
+        firstName: 'tony',
+        lastName: 'nguyen',
+        getName: function() {
+          return this.firstName
+        }
+      }
+    }
+    const personB = new Persons(); // instance
+    console.log("personB: ", personB.firstName)
+    
+    class PersonsClass {
+      constructor({firstName, lastName}) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+      }
+      getName() {
+        return this.firstName
+      }
+    }
+
+    class Animal {
+      constructor({ name, age, category }) {
+        this.name = name;
+        this.age = age;
+        this.category = category;
+      }
+
+      getName() {
+        return this.name
+      }
+      getCategory() {
+        return this.category
+      }
+    }
+
+    class Dog extends Animal {
+      constructor({ name, age, category, color }) {
+        super({
+          name,
+          age,
+          category
+        });
+        this.color = color;
+      }
+
+      limbs() {
+        return 4;
+      }
+    }
+    
+    const animal = new Animal({
+      name: 'ton',
+      category: 'bird',
+      age: 18
+    });
+    console.log("animal: ", animal.getName())
+
+    const dog = new Dog({
+      color: 'yellow',
+      category: '4 limbs'
+    })
+    console.log("dog: ", dog.getCategory())
+
+
+
+  </script>
+</body>
+</html>
+
+

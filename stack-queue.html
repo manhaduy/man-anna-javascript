@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>array</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body style="padding: 0 20px">
+  <h1>
+    Array Stack & Queue
+  </h1>
+  
+  <script type="text/javascript">
+    /* Stack (push, pop)
+      A stack is an ordered collection of items that follows the LIFO (Last In First Out).
+
+      1/ Declare 1 class Stack with a variable items = [];
+      2/ Declare the methods available for our stack:
+        push (element): add a new item to the top.
+        pop (): removes the top item.
+        peek (): only return the top element.
+        isEmpty (): return true if the stack doesn’t contain any elements, false if the size bigger than 0.
+        clear (): removes all elements.
+        size() : return the number of elements that the stack contains.
+    */  
+
+    /*  Queue (unshift, shift)
+      A queue is an ordered collection of items that follows the FIFO (First In First Out).
+
+      1/ Declare 1 class Queue with a variable items = [];
+      2/ Declare the methods available for our queue:
+      enqueue (element): add a new item at the top of the queue.
+      dequeue (): removes the first element from the queue.
+      front (): returns the first element from the queue.
+      isEmpty (): return true if the queue doesn’t contain any elements, false if the size bigger than 0.
+      clear (): removes all elements.
+      size() : return the number of elements that the queue contains.
+    */
+
+    class Structure {
+      constructor() {
+        this.items = [];
+      }
+      isEmpty(){  //return true if the stack doesn’t contain any elements, false if the size bigger than 0.
+        return this.items.length == 0; 
+      }
+      size(){     //return the number of elements that the stack contains.
+        return this.items.length
+      }
+      clear(){    //removes all elements.
+        this.items = [];
+      }
+      print(){
+        return this.items
+      }
+    }
+
+    class Stack extends Structure{
+      constructor (){
+        super();
+      }
+      push(item){
+        this.items.push(item)
+      }
+      pop(){      //removes the top item.
+        if (this.items.length == 0)
+            return "Out of stack"
+        return this.items.pop()
+      }
+      peek(){     //only return the top element.
+        return this.items[this.items.length - 1];
+      }
+    }
+
+    class Queue extends Structure{
+      constructor (){
+        super();
+        this.items = []
+      }
+      enqueue(item){
+        this.items.unshift(item)
+      }
+      dequeue(){      //removes the top item.
+        if (this.items.length == 0)
+            return "Out of stack"
+        return this.items.shift()
+      }
+      front(){     //only return the top element.
+        return this.items[0];
+      }
+    }
+
+    const stack = new Stack();
+    stack.push(2);
+    stack.push(3);
+    console.log('print stack: ', stack.print())
+
+  </script>
+</body>
+</html>
+
+

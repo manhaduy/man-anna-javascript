@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Question Board</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <h1>
+      Stack - Queue
+    </h1>
+  
+    <script type="text/javascript">
+/* Stack (push, pop)
+      A stack is an ordered collection of items that follows the LIFO (Last In First Out).
+
+      1/ Declare 1 class Stack with a variable items = [];
+      2/ Declare the methods available for our stack:
+        push (element): add a new item to the top.
+        pop (): removes the top item.
+        peek (): only return the top element.
+        isEmpty (): return true if the stack doesn’t contain any elements, false if the size bigger than 0.
+        clear (): removes all elements.
+        size() : return the number of elements that the stack contains.
+    */  
+
+        class Stack {
+            constructor (){
+                this.items = []
+            }
+
+            push(item){
+                this.items.push(item)
+            }
+
+            pop(){      //removes the top item.
+                if (this.items.length == 0)
+                    return "Out of stack"
+                return this.items.pop()
+            }
+
+            peek(){     //only return the top element.
+                return this.items[this.items.length - 1];
+            }
+
+            isEmpty(){  //return true if the stack doesn’t contain any elements, false if the size bigger than 0.
+                return this.items.length == 0; 
+            }
+
+            size(){     //return the number of elements that the stack contains.
+                return this.items.length
+            }
+
+            clear(){    //removes all elements.
+                for (let i = 0; i < this.items.length; i ++){
+                    this.items.pop([this.items])
+                }
+                return 
+            }
+
+            print(){
+                return this.items
+            }
+        }
+
+        const stack = new Stack();
+        stack.push(2);
+        stack.push(4);
+        stack.push(3);
+
+        console.log('stack after push 2,4,3: ', stack.print())
+        console.log('Get top element of stack: ', stack.peek())
+        stack.pop();
+        stack.pop();
+
+        console.log('stack after pop 2 time: ', stack.print())
+
+        stack.pop();
+
+        console.log('stack pop to empty: ', stack.isEmpty())
+
+        stack.push(3);
+        stack.push(2);
+        stack.push(4);
+        stack.push(1);
+
+        console.log('current stack: ', stack.print())
+        console.log('Get top element of stack: ', stack.peek())
+        console.log('Get size of stack: ', stack.size())
+
+        stack.clear()
+        console.log('current stack: ', stack.print())
+
+
+
+
+    /*  Queue (unshift, shift)
+      A queue is an ordered collection of items that follows the FIFO (First In First Out).
+
+      1/ Declare 1 class Queue with a variable items = [];
+      2/ Declare the methods available for our queue:
+      enqueue (element): add a new item at the top of the queue.
+      dequeue (): removes the first element from the queue.
+      front (): returns the first element from the queue.
+      isEmpty (): return true if the queue doesn’t contain any elements, false if the size bigger than 0.
+      clear (): removes all elements.
+      size() : return the number of elements that the queue contains.
+    */
+
+
+    </script>
+  </body>
+</html>
+
+

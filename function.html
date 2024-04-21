@@ -32,7 +32,6 @@
     }
     console.log('function expression: ', calRect2());
 
-
     // parameters
     // default value for parameters: firstName = 'John', lastName = 'Doe'
     const object = {
@@ -47,6 +46,128 @@
       firstName: 'tony',
       lastName: 'stark',
     }))
+    
+
+    /* callback function 
+      A callback is a function that is to be executed after another function has finished executing — hence the name ‘call back’.
+    */
+
+    function doHomework(subject, callback) {
+      console.log(`Start ${subject}`);
+      if(typeof callback === 'function') {
+        callback(); // callback function
+      }
+    }
+
+    doHomework('math', () => {
+      console.log('Finish my homework')
+    })
+
+    /* arrow function: () => { ... }
+      Arrow functions were introduced in ES6.
+      Arrow function doesn’t this.
+      Arrow function doesn’t bind.
+      Arrow function to anonymous function (ko bi hoisting)
+    */  
+   const persons = {
+    name: 'bmw',
+    year: 1998,
+    getBrand: () => {
+      console.log('arrow function: ', this)
+    },
+    getFullName() {
+      console.log('regular function: ', this)
+    }
+   }
+
+    //  anomyFunction(); // error exectue
+    const anomyFunction = () => {
+      console.log('anonymous function: ', this)
+    }
+    persons.getBrand();
+    persons.getFullName();
+    anomyFunction();
+
+    //arrow function - specify body
+    // const sum = (x, y) => {
+    //   if( x > 3) {
+    //     return y
+    //   }
+    //   return x + y
+    // }
+    const sum = (x, y) => (x + y); // just allow when don't has any condition statement
+    const getCars = () => ({
+      name: 'honda'
+    })
+    
+    console.log('arrow function - specify body: ', sum(2, 3))
+    console.log('arrow functio - return object: ', getCars())
+
+    /* curry function
+      Currying is a process in functional programming in which 
+      we can transform a function with multiple arguments into 
+      a sequence of nesting functions.
+    */
+   // multiple(2)(3)(4) = 24
+   function multiple(x) {
+      const sumAbc = x  + 10;
+      return function(y) {
+        const yAvadance = sumAbc + 20;
+        return function(z) {
+          return sumAbc * yAvadance * z
+        }
+      }
+   }
+   console.log('curry function: ', multiple(2)(3)(4))
+
+   /* Higher Order Function (HOF)
+     - A higher-order function is a function that takes one or 
+       more functions as arguments.
+    - returns a function as its result. 
+   */
+   function applyThree(func, arg) {
+    /* func(func(func(arg)))
+      func: sumSub
+      arg: 10
+     1. func(func(func(arg))) = func(func(sumSub(10))) = func(func(15))
+     2. func(func(15)) = func(sumSub(15)) = func(20)
+     3.  func(20) = sumSub(20)
+     => 25
+    */
+    return func(func(func(arg)))
+   }
+   function sumSub(x) {
+    return x + 5;
+   }
+
+   console.log('HOF: ', applyThree(sumSub, 10))
+
+   // bai tap HOF
+   const grades = [
+      { name: 'John', grade: 8, sex: 'M' },
+      { name: 'Sarah', grade: 12, sex: 'F' },
+      { name: 'Bob', grade: 16, sex: 'M' },
+      { name: 'Johnny', grade: 2, sex: 'M' },
+      { name: 'Ethan', grade: 4, sex: 'M' },
+      { name: 'Paula', grade: 18, sex: 'F' },
+      { name: 'Donald', grade: 5, sex: 'M' },
+      { name: 'Jennifer', grade: 13, sex: 'F' },
+      { name: 'Courtney', grade: 15, sex: 'F' },
+      { name: 'Jane', grade: 9, sex: 'F' },
+    ];
+    /*
+      Tìm thứ hạng trung bình của cả lớp 
+      Tìm thứ hạng trung bình của nam trong lớp 
+      Tìm thứ hạng trung bình của Nữ trong lớp 
+      Tìm thứ hạng cao nhất của Nam trong lớp 
+      Tìm thứ hạng cao nhất của Nữ trong lớp
+      Tìm thứ hạng thấp nhất của Nam trong lớp 
+      Tìm thứ hạng thấp nhất của Nữ trong lớp 
+      Tìm thứ hạng cao nhất của cả lớp 
+      Tìm thứ hạng thấp nhất của cả lớp
+    */
+
+
 
   </script>
 </body>

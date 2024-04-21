@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Question Board</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <h1>
+      Class inheritance
+    </h1>
+  
+    <script type="text/javascript">
+        class Animal {
+            constructor({ name, age, category }) {
+                this.name = name;
+                this.age = age;
+                this.category = category;
+            }
+
+
+        getName() {
+            return this.name
+        }
+
+        getCategory(){
+            return this.category
+        }
+    }
+
+    const animal = new Animal({
+        name:'ton',
+        category: 'bird',
+        age: 18
+    });
+    console.log("animal name: ", animal.getName())
+
+    class Cat extends Animal {
+        constructor({name, age, category, color, personality}){
+            super({
+                name,
+                age,
+                category
+            });
+            this.color = color
+            this.personality = personality
+        }
+
+        limbs (){
+            return 4;
+        }
+
+        
+    }
+
+    const cat = new Cat({
+        color: 'yellow',
+        personality: 'playful',
+        category: 'Siamese'
+    })
+    console.log("cat personality: ", cat.personality)
+    console.log("cat category: ", cat.getCategory())
+
+    </script>
+  </body>
+</html>
+
+
